@@ -1,0 +1,62 @@
+{
+  "name": "leelo",
+  "version": "1.1.12",
+  "description": "Simplified Reddit MCP server for Installed App authentication. Direct access to Reddit data with 60 RPM limit.",
+  "main": "dist/index.js",
+  "mcpName": "reddit-installed-app",
+  "bin": {
+    "leelo": "./dist/cli.js"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc && (chmod +x dist/cli.js 2>/dev/null || true)",
+    "bundle": "esbuild src/cli.ts --bundle --platform=node --target=node18 --outfile=dist/leelo.js --format=esm --banner:js=\"import { createRequire } from 'module'; const require = createRequire(import.meta.url);\" --external:node:*",
+    "start": "node dist/index.js",
+    "start:http": "REDDIT_BUDDY_HTTP=true node dist/index.js",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:rate-limit": "node scripts/rate-limit-tester.cjs",
+    "test:rate-limit:anon": "node scripts/rate-limit-tester.cjs anonymous 15",
+    "test:rate-limit:app": "node scripts/rate-limit-tester.cjs app-only 70",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "docker:build": "docker build -t reddit-installed-app .",
+    "docker:run": "docker run -it reddit-installed-app",
+    "docker:run-http": "docker run -p 3000:3000 -e REDDIT_BUDDY_HTTP=true reddit-installed-app"
+  },
+  "keywords": [
+    "reddit",
+    "mcp",
+    "claude",
+    "ai",
+    "installed-app"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.24.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "esbuild": "^0.27.3",
+    "eslint": "^8.57.0",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
+    "vitest": "^3.2.4"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
