@@ -1,13 +1,13 @@
-# Leelo (Léelo)
+# leelo (Léelo)
 
-**Leelo** is a Model Context Protocol (MCP) server that enables AI assistants to browse Reddit using the official "Installed App" authentication flow.
+**leelo** is a Model Context Protocol (MCP) server that enables AI assistants to browse Reddit using the official "Installed App" authentication flow.
 
 ## Disclaimer
 
 This project is not affiliated with, endorsed by, or sponsored by Reddit.
 "Reddit" is a trademark of Reddit Inc.
 
-Leelo interacts with Reddit using the official OAuth2 API for personal use tools.
+leelo interacts with Reddit using the official OAuth2 API for personal use tools.
 
 ## Upstream Attribution
 
@@ -23,7 +23,7 @@ This project is based on:
 
 ## Installation
 
-1. Download the latest `leelo-release.zip` from the [Releases](https://github.com/YOUR_USERNAME/Leelo/releases) page.
+1. Download the latest `leelo-release.zip` from the [Releases](https://github.com/pokokone/leelo/releases) page.
 2. Extract the zip file to a permanent location.
 3. Configure Claude Desktop as shown below.
 
@@ -49,7 +49,7 @@ Add this to your `claude_desktop_config.json`:
   "mcpServers": {
     "leelo": {
       "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/Leelo/leelo.js"],
+      "args": ["/ABSOLUTE/PATH/TO/leelo/leelo.js"],
       "env": {
         "REDDIT_CLIENT_ID": "YOUR_CLIENT_ID"
       }
@@ -70,8 +70,8 @@ Add this to your `claude_desktop_config.json`:
 
 To build from source:
 ```bash
-git clone https://github.com/YOUR_USERNAME/Leelo.git
-cd Leelo
+git clone https://github.com/pokokone/leelo.git
+cd leelo
 npm install
 npm run build
 npm run bundle
